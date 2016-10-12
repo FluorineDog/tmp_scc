@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/mike/workplace/graph/basis
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -77,6 +66,17 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -111,17 +111,57 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named basis
+# Target rules for targets named tt
 
 # Build rule for target.
-basis: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 basis
-.PHONY : basis
+tt: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tt
+.PHONY : tt
 
 # fast build rule for target.
-basis/fast:
-	$(MAKE) -f CMakeFiles/basis.dir/build.make CMakeFiles/basis.dir/build
-.PHONY : basis/fast
+tt/fast:
+	$(MAKE) -f CMakeFiles/tt.dir/build.make CMakeFiles/tt.dir/build
+.PHONY : tt/fast
+
+#=============================================================================
+# Target rules for targets named bfs
+
+# Build rule for target.
+bfs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 bfs
+.PHONY : bfs
+
+# fast build rule for target.
+bfs/fast:
+	$(MAKE) -f CMakeFiles/bfs.dir/build.make CMakeFiles/bfs.dir/build
+.PHONY : bfs/fast
+
+BFS.o: BFS.cpp.o
+
+.PHONY : BFS.o
+
+# target to build an object file
+BFS.cpp.o:
+	$(MAKE) -f CMakeFiles/bfs.dir/build.make CMakeFiles/bfs.dir/BFS.cpp.o
+.PHONY : BFS.cpp.o
+
+BFS.i: BFS.cpp.i
+
+.PHONY : BFS.i
+
+# target to preprocess a source file
+BFS.cpp.i:
+	$(MAKE) -f CMakeFiles/bfs.dir/build.make CMakeFiles/bfs.dir/BFS.cpp.i
+.PHONY : BFS.cpp.i
+
+BFS.s: BFS.cpp.s
+
+.PHONY : BFS.s
+
+# target to generate assembly for a file
+BFS.cpp.s:
+	$(MAKE) -f CMakeFiles/bfs.dir/build.make CMakeFiles/bfs.dir/BFS.cpp.s
+.PHONY : BFS.cpp.s
 
 test.o: test.cpp.o
 
@@ -129,7 +169,7 @@ test.o: test.cpp.o
 
 # target to build an object file
 test.cpp.o:
-	$(MAKE) -f CMakeFiles/basis.dir/build.make CMakeFiles/basis.dir/test.cpp.o
+	$(MAKE) -f CMakeFiles/tt.dir/build.make CMakeFiles/tt.dir/test.cpp.o
 .PHONY : test.cpp.o
 
 test.i: test.cpp.i
@@ -138,7 +178,7 @@ test.i: test.cpp.i
 
 # target to preprocess a source file
 test.cpp.i:
-	$(MAKE) -f CMakeFiles/basis.dir/build.make CMakeFiles/basis.dir/test.cpp.i
+	$(MAKE) -f CMakeFiles/tt.dir/build.make CMakeFiles/tt.dir/test.cpp.i
 .PHONY : test.cpp.i
 
 test.s: test.cpp.s
@@ -147,7 +187,7 @@ test.s: test.cpp.s
 
 # target to generate assembly for a file
 test.cpp.s:
-	$(MAKE) -f CMakeFiles/basis.dir/build.make CMakeFiles/basis.dir/test.cpp.s
+	$(MAKE) -f CMakeFiles/tt.dir/build.make CMakeFiles/tt.dir/test.cpp.s
 .PHONY : test.cpp.s
 
 # Help Target
@@ -156,9 +196,13 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... basis"
+	@echo "... edit_cache"
+	@echo "... tt"
+	@echo "... bfs"
+	@echo "... BFS.o"
+	@echo "... BFS.i"
+	@echo "... BFS.s"
 	@echo "... test.o"
 	@echo "... test.i"
 	@echo "... test.s"
