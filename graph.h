@@ -69,3 +69,4 @@ inline void clear_graph(Graph& graph){
 
 void breath_first_search(Graph& graph, int source);
 void depth_first_search(Graph& graph);
+std::vector<int> topological_sort(Graph& graph);

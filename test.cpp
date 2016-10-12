@@ -13,13 +13,18 @@ int main(){
 		add_edge(graph, from, to);
 		//add_edge(graph, to, from);
 	}
-	cerr << "hehe " << graph[3].edges<< endl;
+	//cerr << "hehe " << graph[3].edges<< endl;
 	//auto temp = transpose(graph);
-	breath_first_search(graph, 2);
 	depth_first_search(graph);
+	breath_first_search(graph, 2);
+	auto vec = topological_sort(graph);
 	for(auto vertex: graph){ 
 		cout<< vertex.parent << '-' << vertex.discover_time
 			<< '-' <<vertex.finish_time<<'\t';
+	}
+	cout << endl;
+	for(auto x: vec){
+		cout << x << '\t';
 	}
 	cout << std::endl;
     return 0;
