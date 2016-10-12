@@ -1,6 +1,6 @@
-#include <iostream>
 #include <vector>
 #include <limits>
+#include <iostream>
 
 constexpr int inf = std::numeric_limits<int>::max() / 2;
 enum class color_t{black, white};
@@ -20,6 +20,7 @@ struct Vertex{
 	color_t color;
 	int discover_time;
 	int parent;
+	int finish_time;
 };
 
 struct Graph 
@@ -67,3 +68,4 @@ inline void clear_graph(Graph& graph){
 }
 
 void breath_first_search(Graph& graph, int source);
+void depth_first_search(Graph& graph);

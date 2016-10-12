@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/mike/workplace/graph/basis
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
@@ -77,6 +66,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named bfs
+
+# Build rule for target.
+bfs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 bfs
+.PHONY : bfs
+
+# fast build rule for target.
+bfs/fast:
+	$(MAKE) -f CMakeFiles/bfs.dir/build.make CMakeFiles/bfs.dir/build
+.PHONY : bfs/fast
+
+#=============================================================================
 # Target rules for targets named tt
 
 # Build rule for target.
@@ -124,17 +137,17 @@ tt/fast:
 .PHONY : tt/fast
 
 #=============================================================================
-# Target rules for targets named bfs
+# Target rules for targets named dfs
 
 # Build rule for target.
-bfs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 bfs
-.PHONY : bfs
+dfs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 dfs
+.PHONY : dfs
 
 # fast build rule for target.
-bfs/fast:
-	$(MAKE) -f CMakeFiles/bfs.dir/build.make CMakeFiles/bfs.dir/build
-.PHONY : bfs/fast
+dfs/fast:
+	$(MAKE) -f CMakeFiles/dfs.dir/build.make CMakeFiles/dfs.dir/build
+.PHONY : dfs/fast
 
 BFS.o: BFS.cpp.o
 
@@ -162,6 +175,33 @@ BFS.s: BFS.cpp.s
 BFS.cpp.s:
 	$(MAKE) -f CMakeFiles/bfs.dir/build.make CMakeFiles/bfs.dir/BFS.cpp.s
 .PHONY : BFS.cpp.s
+
+DFS.o: DFS.cpp.o
+
+.PHONY : DFS.o
+
+# target to build an object file
+DFS.cpp.o:
+	$(MAKE) -f CMakeFiles/dfs.dir/build.make CMakeFiles/dfs.dir/DFS.cpp.o
+.PHONY : DFS.cpp.o
+
+DFS.i: DFS.cpp.i
+
+.PHONY : DFS.i
+
+# target to preprocess a source file
+DFS.cpp.i:
+	$(MAKE) -f CMakeFiles/dfs.dir/build.make CMakeFiles/dfs.dir/DFS.cpp.i
+.PHONY : DFS.cpp.i
+
+DFS.s: DFS.cpp.s
+
+.PHONY : DFS.s
+
+# target to generate assembly for a file
+DFS.cpp.s:
+	$(MAKE) -f CMakeFiles/dfs.dir/build.make CMakeFiles/dfs.dir/DFS.cpp.s
+.PHONY : DFS.cpp.s
 
 test.o: test.cpp.o
 
@@ -196,13 +236,17 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... tt"
 	@echo "... bfs"
+	@echo "... tt"
+	@echo "... dfs"
+	@echo "... rebuild_cache"
 	@echo "... BFS.o"
 	@echo "... BFS.i"
 	@echo "... BFS.s"
+	@echo "... DFS.o"
+	@echo "... DFS.i"
+	@echo "... DFS.s"
 	@echo "... test.o"
 	@echo "... test.i"
 	@echo "... test.s"

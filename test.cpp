@@ -11,13 +11,15 @@ int main(){
 	int from, to;
 	while(cin>>from>>to){
 		add_edge(graph, from, to);
-		add_edge(graph, to, from);
+		//add_edge(graph, to, from);
 	}
 	cerr << "hehe " << graph[3].edges<< endl;
-	auto temp = transpose(graph);
-	breath_first_search(temp, 2);
-	for(auto vertex: temp){ 
-		cout<<vertex.parent << '-' << vertex.discover_time<<'\t';
+	//auto temp = transpose(graph);
+	breath_first_search(graph, 2);
+	depth_first_search(graph);
+	for(auto vertex: graph){ 
+		cout<< vertex.parent << '-' << vertex.discover_time
+			<< '-' <<vertex.finish_time<<'\t';
 	}
 	cout << std::endl;
     return 0;
