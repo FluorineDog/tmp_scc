@@ -21,6 +21,7 @@ struct Vertex{
 	int discover_time;
 	int parent;
 	int finish_time;
+	int scc_index;
 };
 
 struct Graph 
@@ -33,6 +34,19 @@ struct Graph
 			(*this)[i].from = i; 
 		}
 	}
+	Graph& operator=(const Graph&) = delete;
+	Graph(const Graph&) = delete;
+	Graph& operator=(Graph&& graph){
+		vector<Vertex>(*this) = std::move(graph);
+		graph.clear();
+		return *this;
+	}
+	Graph(Graph&& graph):
+		vector(std::move(graph))
+	{
+		graph.clear();
+	}
+	~Graph();
 };
 
 inline void add_edge(Graph& graph, int from, int to){
@@ -67,6 +81,12 @@ inline void clear_graph(Graph& graph){
 	}
 }
 
+inline Graph::~Graph(){
+	clear_graph(*this);
+}
+
 void breath_first_search(Graph& graph, int source);
 void depth_first_search(Graph& graph);
 std::vector<int> topological_sort(Graph& graph);
+
+std::pair<Graph, std::vector<int>> strong_connected_component(Graph& graph);

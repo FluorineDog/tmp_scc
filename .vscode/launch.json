@@ -5,12 +5,13 @@
 			"name": "C++ Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceRoot}/tt",
-			"args": [],
+			"program": "${workspaceRoot}/build/tt",
+			"args": ["<", "${workspaceRoot}/data.txt", ">","${workspaceRoot}/output.txt"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceRoot}",
 			"environment": [],
 			"externalConsole": true,
+			"preLaunchTask": "make",
 			"linux": {
 				"MIMode": "gdb"
 			},
