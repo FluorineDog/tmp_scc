@@ -21,7 +21,8 @@ struct Vertex{
 	int discover_time;
 	int parent;
 	int finish_time;
-	int scc_index;
+	//int scc_index;
+	int low;
 };
 
 struct Graph 
@@ -88,5 +89,5 @@ inline Graph::~Graph(){
 void breath_first_search(Graph& graph, int source);
 void depth_first_search(Graph& graph);
 std::vector<int> topological_sort(Graph& graph);
-
 std::pair<Graph, std::vector<int>> strong_connected_component(Graph& graph);
+void test_skeleton(Graph&);
