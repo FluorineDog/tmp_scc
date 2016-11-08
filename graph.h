@@ -48,6 +48,7 @@ struct Graph
 		graph.clear();
 	}
 	~Graph();
+	void showGraph();
 };
 
 inline void add_edge(Graph& graph, int from, int to){
