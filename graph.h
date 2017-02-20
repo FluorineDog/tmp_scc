@@ -1,6 +1,8 @@
 #include <vector>
 #include <limits>
 #include <iostream>
+#include <string>
+
 
 constexpr int inf = std::numeric_limits<int>::max() / 2;
 enum class color_t{black, white};
@@ -18,10 +20,11 @@ struct Vertex{
 	Edge* edges;
 	// any attached data to vertex
 	color_t color;
+	int label;
 	int discover_time;
 	int parent;
 	int finish_time;
-	//int scc_index;
+	int scc_index;
 	int low;
 };
 
