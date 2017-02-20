@@ -11,6 +11,7 @@ using std::endl;
 int main(){
 	int vertex_size = 329;
 	Graph graph(vertex_size);
+	graph[0].label = 1955;
 	std::string line;
 	std::unordered_map<int, int> lookup;
 	
